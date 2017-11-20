@@ -15,7 +15,7 @@ def main(src_path, save_path, interval, last_picture):
 
     for pig in range(1,31): # 1 to 30 pig
         print("the {s} pig starts".format(s=pig))   # display
-        save_path_tmp = save_path + "/" + str(pig)
+        save_path_tmp = new_path + "/" + str(pig)
         if not os.path.exists(save_path_tmp):
             os.mkdir(save_path_tmp)
         num = 1 #sequence
@@ -29,7 +29,7 @@ if __name__ == '__main__':
     # change follows
     src_path = '/home/zq610/WYZ/JD_contest/raw_frame'
     save_path = '/home/zq610/WYZ/JD_contest/refine_frame'
-    interval = 100  #serial interval
-    last_picture = 2950
+    interval = 10  #serial interval
+    last_picture = 2951
     main(src_path, save_path, interval, last_picture)
     print("all finished")

@@ -1,0 +1,1 @@
+python test_classifier.py /usr/JD/raw/test/ --pretrained -a resnet50 -e --resume '/home/guan/kaggle/JD/model_best.pth.tar' 

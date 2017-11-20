@@ -1,6 +1,6 @@
 import cv2
 
-capture = cv2.VideoCapture('/media/Ubuntu/Jetson/WYZ/messing/turtle_boot.mp4')
+capture = cv2.VideoCapture("/home/zq610/WYZ/JD_contest/raw_video/1.mp4")
 #frame_img = cv2.QueryFrame(capture)
 cv2.namedWindow("Video")
 success,frame = capture.read()

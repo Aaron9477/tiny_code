@@ -33,8 +33,8 @@ def main(random_rate, src_path, save_train_path, save_val_path):
         num_image = count_file(pig_path)    
         num_train = int(num_image * random_rate)    # conut num of train
         #print(num_image, num_train)
-        train_choose = random.sample(range(1, num_image+1), num_train)  # get train randomly
-        val_choose = list(set(range(1, num_image+1)).difference(set(train_choose))) # get the ramain
+        train_choose = range(1, num_train+1)  # get train fixly
+        val_choose = range(num_train, num_image+1) # get the ramain
         #print(train_choose)
         #print(val_choose)
 
@@ -54,14 +54,15 @@ def main(random_rate, src_path, save_train_path, save_val_path):
 
 if __name__ == '__main__':
     # where to change 
-    random_rate = 0.8
+    div_rate = 0.7
     root_path = '/home/zq610/WYZ/JD_contest'
+    interval = 10
 
 
-    src_path = root_path + '/refine_frame'
+    src_path = root_path + '/refine_frame/interval_' + str(interval)
     save_train_path = root_path + '/train_set/train'
     save_val_path = root_path + '/train_set/val'
     build_dir(save_train_path)
     build_dir(save_val_path)    
-    main(random_rate, src_path, save_train_path, save_val_path)
+    main(div_rate, src_path, save_train_path, save_val_path)
     print("all finished")

@@ -1,8 +1,5 @@
 #!/usr/bin/env python
-
 import os
-import cv2
-import cv
 
 def copyFiles(sourceFile,  targetFile):  # copy
     if not os.path.exists(targetFile) or(os.path.exists(targetFile) and (os.path.getsize(targetFile) != os.path.getsize(sourceFile))):  
@@ -29,7 +26,7 @@ if __name__ == '__main__':
     # change follows
     src_path = '/home/zq610/WYZ/JD_contest/raw_frame'
     save_path = '/home/zq610/WYZ/JD_contest/refine_frame'
-    interval = 10  #serial interval
+    interval = 5  #serial interval
     last_picture = 2951
     main(src_path, save_path, interval, last_picture)
     print("all finished")

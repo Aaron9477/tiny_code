@@ -1,0 +1,157 @@
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+args	fix_cross_refine.py	/^    args = parser.parse_args()$/;"	v
+build_dir	fix_cross_refine.py	/^def build_dir(path):$/;"	f
+copyFiles	fix_cross_refine.py	/^def copyFiles(sourceFile,  targetFile):  # copy$/;"	f
+count_file	fix_cross_refine.py	/^def count_file(path):$/;"	f
+div_rate	fix_cross_refine.py	/^    div_rate = args.rate$/;"	v
+help	fix_cross_refine.py	/^                    help='The rate of train and val')$/;"	v
+help	fix_cross_refine.py	/^                    help='interval of frame')$/;"	v
+help	fix_cross_refine.py	/^                    help='path to dataset')$/;"	v
+interval	fix_cross_refine.py	/^    interval = args.interval$/;"	v
+list_of_groups	fix_cross_refine.py	/^def list_of_groups(init_list, childern_list_len):$/;"	f
+main	fix_cross_refine.py	/^def main(div_rate, src_path, save_train_path, save_val_path, interval, i):$/;"	f
+parser	fix_cross_refine.py	/^parser = argparse.ArgumentParser(description='refine from raw pig images')$/;"	v
+root_path	fix_cross_refine.py	/^    root_path = args.data$/;"	v
+save_train_path	fix_cross_refine.py	/^        save_train_path = root_path + '\/train_set_' + str(i) + '\/train'$/;"	v
+save_val_path	fix_cross_refine.py	/^        save_val_path = root_path + '\/train_set_' + str(i) + '\/val'$/;"	v
+src_path	fix_cross_refine.py	/^    src_path = root_path + '\/raw_frame'$/;"	v
+args	fix_cross_refine_extract.py	/^    args = parser.parse_args()$/;"	v
+build_dir	fix_cross_refine_extract.py	/^def build_dir(path):$/;"	f
+copyFiles	fix_cross_refine_extract.py	/^def copyFiles(sourceFile,  targetFile):  # copy$/;"	f
+count_file	fix_cross_refine_extract.py	/^def count_file(path):$/;"	f
+div_rate	fix_cross_refine_extract.py	/^    div_rate = args.rate$/;"	v
+help	fix_cross_refine_extract.py	/^                    help='The rate of train and val')$/;"	v
+help	fix_cross_refine_extract.py	/^                    help='interval of frame')$/;"	v
+help	fix_cross_refine_extract.py	/^                    help='path to dataset')$/;"	v
+interval	fix_cross_refine_extract.py	/^    interval = args.interval$/;"	v
+list_of_groups	fix_cross_refine_extract.py	/^def list_of_groups(init_list, childern_list_len):$/;"	f
+main	fix_cross_refine_extract.py	/^def main(div_rate, src_path, save_train_path, save_val_path, interval, i):$/;"	f
+parser	fix_cross_refine_extract.py	/^parser = argparse.ArgumentParser(description='refine from raw pig images')$/;"	v
+root_path	fix_cross_refine_extract.py	/^    root_path = args.data$/;"	v
+save_train_path	fix_cross_refine_extract.py	/^        save_train_path = root_path + '\/train_set_' + str(i) + '\/train'$/;"	v
+save_val_path	fix_cross_refine_extract.py	/^        save_val_path = root_path + '\/train_set_' + str(i) + '\/val'$/;"	v
+src_path	fix_cross_refine_extract.py	/^    src_path = root_path$/;"	v
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+clip	old/clipe_video.py	/^def clip(video_path, times, save_dir):$/;"	f
+f	old/clipe_video.py	/^    f = open("cut.txt")$/;"	v
+line	old/clipe_video.py	/^        line = f.readline()$/;"	v
+DATA_PATH	old/extract_roi_from_raw.py	/^DATA_PATH = '\/home\/zq610\/WYZ\/JD_contest'             # txt文件路径$/;"	v
+DIC	old/extract_roi_from_raw.py	/^DIC = {}$/;"	v
+FILES	old/extract_roi_from_raw.py	/^FILES = ['cow', 'dog', 'elephant', 'horse', 'sheep']$/;"	v
+IMG_SAVE_PATH	old/extract_roi_from_raw.py	/^IMG_SAVE_PATH = '\/home\/zq610\/WYZ\/JD_contest\/extract'   # 抠出来的图存储路径$/;"	v
+PREFIX	old/extract_roi_from_raw.py	/^PREFIX = 'comp4_det_test_'  # txt文件前缀$/;"	v
+SIZE	old/extract_roi_from_raw.py	/^SIZE = (640, 360)           # 缩放的size$/;"	v
+SUFFIX	old/extract_roi_from_raw.py	/^SUFFIX = '.txt'             # txt文件后缀$/;"	v
+THRESHOLD	old/extract_roi_from_raw.py	/^THRESHOLD = 0.25            # 只抠概率大于0.25的图$/;"	v
+extract_img	old/extract_roi_from_raw.py	/^def extract_img(img, x1,x2,x3,x4):$/;"	f
+extract_imgs	old/extract_roi_from_raw.py	/^def extract_imgs(file):$/;"	f
+get_save_path	old/extract_roi_from_raw.py	/^def get_save_path(img_path):$/;"	f
+cap	old/extrct_frame_video.py	/^    cap  = cv2.VideoCapture(each_video_full_path)$/;"	v
+each_video_full_path	old/extrct_frame_video.py	/^    each_video_full_path = os.path.join(videos_src_path, each_video)$/;"	v
+each_video_save_full_path	old/extrct_frame_video.py	/^    each_video_save_full_path = os.path.join(videos_save_path, each_video_name) + '\/'$/;"	v
+frame_count	old/extrct_frame_video.py	/^        frame_count = frame_count + 1$/;"	v
+frame_count	old/extrct_frame_video.py	/^    frame_count = 1$/;"	v
+params	old/extrct_frame_video.py	/^        params = []$/;"	v
+success	old/extrct_frame_video.py	/^    success = True$/;"	v
+videos	old/extrct_frame_video.py	/^videos = filter(lambda x: x.endswith('mp4'), videos)$/;"	v
+videos	old/extrct_frame_video.py	/^videos = os.listdir(videos_src_path)$/;"	v
+videos_save_path	old/extrct_frame_video.py	/^videos_save_path = '\/home\/zq610\/WYZ\/JD_contest\/raw_frame'$/;"	v
+videos_src_path	old/extrct_frame_video.py	/^videos_src_path = '\/home\/zq610\/WYZ\/JD_contest\/raw_video'$/;"	v
+build_dir	old/fix_choose.py	/^def build_dir(path):$/;"	f
+copyFiles	old/fix_choose.py	/^def copyFiles(sourceFile,  targetFile):  # copy$/;"	f
+count_file	old/fix_choose.py	/^def count_file(path):$/;"	f
+div_rate	old/fix_choose.py	/^    div_rate = 0.7$/;"	v
+interval	old/fix_choose.py	/^    interval = 40$/;"	v
+main	old/fix_choose.py	/^def main(random_rate, src_path, save_train_path, save_val_path):$/;"	f
+root_path	old/fix_choose.py	/^    root_path = '\/home\/zq610\/WYZ\/JD_contest'$/;"	v
+save_train_path	old/fix_choose.py	/^    save_train_path = root_path + '\/train_set\/train'$/;"	v
+save_val_path	old/fix_choose.py	/^    save_val_path = root_path + '\/train_set\/val'$/;"	v
+src_path	old/fix_choose.py	/^    src_path = root_path + '\/refine_frame\/interval_' + str(interval)$/;"	v
+args	old/fix_refine.py	/^    args = parser.parse_args()$/;"	v
+build_dir	old/fix_refine.py	/^def build_dir(path):$/;"	f
+copyFiles	old/fix_refine.py	/^def copyFiles(sourceFile,  targetFile):  # copy$/;"	f
+count_file	old/fix_refine.py	/^def count_file(path):$/;"	f
+div_rate	old/fix_refine.py	/^    div_rate = args.rate$/;"	v
+help	old/fix_refine.py	/^                    help='The rate of train and val')$/;"	v
+help	old/fix_refine.py	/^                    help='interval of frame')$/;"	v
+help	old/fix_refine.py	/^                    help='path to dataset')$/;"	v
+interval	old/fix_refine.py	/^    interval = args.interval$/;"	v
+main	old/fix_refine.py	/^def main(div_rate, src_path, save_train_path, save_val_path):$/;"	f
+parser	old/fix_refine.py	/^parser = argparse.ArgumentParser(description='refine from raw pig images')$/;"	v
+root_path	old/fix_refine.py	/^    root_path = args.data$/;"	v
+save_train_path	old/fix_refine.py	/^    save_train_path = root_path + '\/train_set\/train'$/;"	v
+save_val_path	old/fix_refine.py	/^    save_val_path = root_path + '\/train_set\/val'$/;"	v
+src_path	old/fix_refine.py	/^    src_path = root_path + '\/raw_frame'$/;"	v
+build_dir	old/random_choose.py	/^def build_dir(path):$/;"	f
+copyFiles	old/random_choose.py	/^def copyFiles(sourceFile,  targetFile):  # copy$/;"	f
+count_file	old/random_choose.py	/^def count_file(path):$/;"	f
+main	old/random_choose.py	/^def main(random_rate, src_path, save_train_path, save_val_path):$/;"	f
+random_rate	old/random_choose.py	/^    random_rate = 0.8$/;"	v
+root_path	old/random_choose.py	/^    root_path = '\/home\/zq610\/WYZ\/JD_contest'$/;"	v
+save_train_path	old/random_choose.py	/^    save_train_path = root_path + '\/train_set\/train'$/;"	v
+save_val_path	old/random_choose.py	/^    save_val_path = root_path + '\/train_set\/val'$/;"	v
+src_path	old/random_choose.py	/^    src_path = root_path + '\/refine_frame'$/;"	v
+copyFiles	old/refine_frame.py	/^def copyFiles(sourceFile,  targetFile):  # copy$/;"	f
+interval	old/refine_frame.py	/^    interval = 5  #serial interval$/;"	v
+last_picture	old/refine_frame.py	/^    last_picture = 2951$/;"	v
+main	old/refine_frame.py	/^def main(src_path, save_path, interval, last_picture):$/;"	f
+save_path	old/refine_frame.py	/^    save_path = '\/home\/zq610\/WYZ\/JD_contest\/refine_frame'$/;"	v
+src_path	old/refine_frame.py	/^    src_path = '\/home\/zq610\/WYZ\/JD_contest\/raw_frame'$/;"	v
+AverageMeter	resnet50/finetune_classifier.py	/^class AverageMeter(object):$/;"	c
+__init__	resnet50/finetune_classifier.py	/^    def __init__(self):$/;"	m	class:AverageMeter
+accuracy	resnet50/finetune_classifier.py	/^def accuracy(output, target, topk=(1,)):$/;"	f
+adjust_learning_rate	resnet50/finetune_classifier.py	/^def adjust_learning_rate(optimizer, epoch):$/;"	f
+best_prec1	resnet50/finetune_classifier.py	/^best_prec1 = 0$/;"	v
+choices	resnet50/finetune_classifier.py	/^                    choices=model_names,$/;"	v
+help	resnet50/finetune_classifier.py	/^                    help='distributed backend')$/;"	v
+help	resnet50/finetune_classifier.py	/^                    help='evaluate model on validation set')$/;"	v
+help	resnet50/finetune_classifier.py	/^                    help='manual epoch number (useful on restarts)')$/;"	v
+help	resnet50/finetune_classifier.py	/^                    help='model architecture: ' +$/;"	v
+help	resnet50/finetune_classifier.py	/^                    help='momentum')$/;"	v
+help	resnet50/finetune_classifier.py	/^                    help='number of data loading workers (default: 4)')$/;"	v
+help	resnet50/finetune_classifier.py	/^                    help='number of distributed processes')$/;"	v
+help	resnet50/finetune_classifier.py	/^                    help='number of total epochs to run')$/;"	v
+help	resnet50/finetune_classifier.py	/^                    help='path to dataset')$/;"	v
+help	resnet50/finetune_classifier.py	/^                    help='path to latest checkpoint (default: none)')$/;"	v
+help	resnet50/finetune_classifier.py	/^                    help='url used to set up distributed training')$/;"	v
+help	resnet50/finetune_classifier.py	/^                    help='use pre-trained model')$/;"	v
+main	resnet50/finetune_classifier.py	/^def main():$/;"	f
+model_names	resnet50/finetune_classifier.py	/^model_names = sorted(name for name in models.__dict__$/;"	v
+parser	resnet50/finetune_classifier.py	/^parser = argparse.ArgumentParser(description='pig train')$/;"	v
+reset	resnet50/finetune_classifier.py	/^    def reset(self):$/;"	m	class:AverageMeter
+save_checkpoint	resnet50/finetune_classifier.py	/^def save_checkpoint(state, is_best, filename='checkpoint.pth.tar'):$/;"	f
+train	resnet50/finetune_classifier.py	/^def train(train_loader, model, criterion, optimizer, epoch):$/;"	f
+update	resnet50/finetune_classifier.py	/^    def update(self, val, n=1):$/;"	m	class:AverageMeter
+validate	resnet50/finetune_classifier.py	/^def validate(val_loader, model, criterion):$/;"	f
+AverageMeter	resnet50/test_classifier.py	/^class AverageMeter(object):$/;"	c
+__init__	resnet50/test_classifier.py	/^    def __init__(self):$/;"	m	class:AverageMeter
+adjust_learning_rate	resnet50/test_classifier.py	/^def adjust_learning_rate(optimizer, epoch):$/;"	f
+best_prec1	resnet50/test_classifier.py	/^best_prec1 = 0$/;"	v
+choices	resnet50/test_classifier.py	/^                    choices=model_names,$/;"	v
+get_files	resnet50/test_classifier.py	/^def get_files(directory):$/;"	f
+help	resnet50/test_classifier.py	/^                    help='distributed backend')$/;"	v
+help	resnet50/test_classifier.py	/^                    help='evaluate model on validation set')$/;"	v
+help	resnet50/test_classifier.py	/^                    help='manual epoch number (useful on restarts)')$/;"	v
+help	resnet50/test_classifier.py	/^                    help='model architecture: ' +$/;"	v
+help	resnet50/test_classifier.py	/^                    help='momentum')$/;"	v
+help	resnet50/test_classifier.py	/^                    help='number of data loading workers (default: 4)')$/;"	v
+help	resnet50/test_classifier.py	/^                    help='number of distributed processes')$/;"	v
+help	resnet50/test_classifier.py	/^                    help='number of total epochs to run')$/;"	v
+help	resnet50/test_classifier.py	/^                    help='path to dataset')$/;"	v
+help	resnet50/test_classifier.py	/^                    help='path to latest checkpoint (default: none)')$/;"	v
+help	resnet50/test_classifier.py	/^                    help='url used to set up distributed training')$/;"	v
+help	resnet50/test_classifier.py	/^                    help='use pre-trained model')$/;"	v
+main	resnet50/test_classifier.py	/^def main():$/;"	f
+model_names	resnet50/test_classifier.py	/^model_names = sorted(name for name in models.__dict__$/;"	v
+parser	resnet50/test_classifier.py	/^parser = argparse.ArgumentParser(description='pig train')$/;"	v
+reset	resnet50/test_classifier.py	/^    def reset(self):$/;"	m	class:AverageMeter
+save_checkpoint	resnet50/test_classifier.py	/^def save_checkpoint(state, is_best, filename='checkpoint.pth.tar'):$/;"	f
+update	resnet50/test_classifier.py	/^    def update(self, val, n=1):$/;"	m	class:AverageMeter
+SUFFIX	wash_extract.py	/^SUFFIX = '.jpg'$/;"	v
+image_list	wash_extract.py	/^image_list = os.listdir(root_dir)$/;"	v
+img	wash_extract.py	/^    img = os.path.$/;"	v
+root_dir	wash_extract.py	/^root_dir = '\/home\/zq610\/WYZ\/JD_contest\/roi\/1'$/;"	v

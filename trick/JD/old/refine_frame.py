@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+
+##----From raw images' folder, it will refine image whit fixed interval---##
+
 import os
 
 def copyFiles(sourceFile,  targetFile):  # copy

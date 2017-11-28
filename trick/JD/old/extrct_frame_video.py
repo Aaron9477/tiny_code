@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+##----从视频中截取所有帧---##
+
 import os
 import cv2
 import cv

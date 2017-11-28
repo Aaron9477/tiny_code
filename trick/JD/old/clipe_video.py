@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+
+##----根据txt文件将视频截成一段一段的---##
+
 from moviepy.editor import *
 import os
 

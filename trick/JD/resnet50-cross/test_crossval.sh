@@ -1,0 +1,1 @@
+python test_classifier_cross.py /home/zq610/WYZ/JD_contest/test/ -a resnet50 -e

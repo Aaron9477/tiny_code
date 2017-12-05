@@ -3,7 +3,7 @@ import os
 import argparse
 
 ##----From raw images' folder, it will refine image whit fixed interval, ant in these chose images it will divide it with fixed rate---##
-##---the different of it with fix_refine.py is, it don't have fixed name of image, so it can work every where---##
+##---the different of it with fix_refine.py is that it don't have fixed name of image, so it can work every where---##
 
 
 parser = argparse.ArgumentParser(description='refine from raw pig images')

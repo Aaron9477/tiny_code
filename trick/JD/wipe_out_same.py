@@ -6,8 +6,9 @@
 import os
 import cv2
 
-src_dir = '/home/zq610/WYZ/JD_contest/wipe_out/good'
-output_dir = '/home/zq610/WYZ/JD_contest/wipe_out/one_left2'
+src_dir = '/home/zq610/WYZ/JD_contest/box'
+output_dir = '/home/zq610/WYZ/JD_contest/wipe_out/one_left'
+num_picture = 2951  # the sum of all picture
 
 def build_dir(path):
     if not os.path.exists(path):    # build new folder
@@ -27,10 +28,11 @@ def get_img_size(input_dir, image_name):
 
 # return the largest img in list
 def get_largest_img(input_dir, img_list):
-    img_size = 0
+    largest_image_size = 0
     for tmp_img in img_list:
         tmp_img_size = get_img_size(input_dir, tmp_img)
-        if tmp_img_size > img_size:
+        if tmp_img_size > largest_image_size:
+            largest_image_size = tmp_img_size
             largest_image = tmp_img
     return largest_image
 
@@ -45,29 +47,29 @@ def main():
         image_list = os.listdir(pig_dir)   #all images
         this_picture_images = []  # save the image from same picture as tmp
         largest_image_list = []
-        for frame in range(1,297):  # traverse every picture, one picture could generate many images
+        for frame in range(1, num_picture+1):  # traverse every picture, one picture could generate many images
             for image in image_list:    # traverse all images to find images from this picture
-                if image.startswith(str(frame)+'_'):  #the image start with seqence and '_'
+                if image.startswith(str(pig)+'_'+str(frame)+'_'):  #the image start with seqence and '_'
                     this_picture_images.append(image)
             if len(this_picture_images) == 0:
                 continue
             elif len(this_picture_images) == 1:
                 target_img = this_picture_images[0]
-                # image_list.remove(image)    # remove the picture from image_list to reduce the time of computation
             else:
                 target_img = get_largest_img(pig_dir, this_picture_images)
             largest_image_list.append(target_img)
             copyFiles(os.path.join(pig_dir, target_img), os.path.join(good_dir, target_img))
             this_picture_images.remove(target_img)  # confirm good frames dont have bad
-            # image_list.remove(target_img)  # remove the picture from image_list to reduce the time of computation
-            for bad_image in this_picture_images:
-                copyFiles(os.path.join(pig_dir, bad_image), os.path.join(bad_dir, bad_image))
-                # image_list.remove(bad_image)    # remove the picture from image_list to reduce the time of computation
-            print('this list consists ' + str(this_picture_images))
+            image_list.remove(target_img)  # remove the picture from image_list to reduce the time of computation
+            if len(this_picture_images) > 0:
+                for bad_image in this_picture_images:
+                    copyFiles(os.path.join(pig_dir, bad_image), os.path.join(bad_dir, bad_image))
+                    image_list.remove(bad_image)    # remove the picture from image_list to reduce the time of computation
+            print('this list consists bad pictures of ' + str(this_picture_images))
             this_picture_images = []
             target_img = None
             print(str(frame) + ' frame finished')
-        print(largest_image_list)
+        # print(largest_image_list)
 
 if __name__ == '__main__':
     main()

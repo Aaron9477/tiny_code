@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 
-# 将30头猪的特征信息转化成两个文件，训练集train_feature.npy和对应的结果'train_target.npy'
 
 import os
 import numpy as np
 
 feature_dir = '/home/zq610/WYZ/JD_contest/wipe_out/wipe_out_small/npy/train'
-output_dir = '/home/zq610/WYZ/JD_contest/wipe_out/wipe_out_small/npy'
+output_dir = '/home/zq610/WYZ/JD_contest/tmp'
 PREFIX = '_resnet50'
 SUFFIX = '.npy'
 

@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-# 工具文件
-
 import os
 import csv
 import argparse

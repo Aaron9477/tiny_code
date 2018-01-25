@@ -32,3 +32,6 @@ def search(path=".", name="1"):
             if name in item:
                 print(item_path)
                 return search()
+
+def square(x):
+    return x*x

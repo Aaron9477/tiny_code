@@ -4,13 +4,14 @@ from maze_env import Maze
 from RL_brain import DeepQNetwork
 import utils
 
-model_save = True
+model_save = False
 
 def run_maze():
     step = 0
-    for episode in range(10):
+    for episode in range(300):
         # initial observation
         observation = env.reset()
+        print("begin")
 
         while True:
             # fresh env
@@ -51,15 +52,15 @@ if __name__ == "__main__":
     RL = DeepQNetwork(env.n_actions, env.n_features,
                       learning_rate=0.01,
                       reward_decay=0.9,
-                      e_greedy=0.98,
+                      e_greedy=0.95,
                       replace_target_iter=300,
-                      memory_size=3000,
-                      e_greedy_origin=0.6,
-                      e_greedy_increment = 0.0001,
+                      memory_size=4800,
+                      e_greedy_origin=0.7,
+                      e_greedy_increment = 0.00002,
                       model_load = False,
                       model_load_dir = "save/{time}/model.ckpt",
                       model_save_dir = "save/{time}/model.ckpt".format(time=time_string),
-                      # output_graph=True
+                      output_graph=False,
                       )
     env.after(100, run_maze)
     env.mainloop()

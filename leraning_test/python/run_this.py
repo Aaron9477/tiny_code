@@ -12,3 +12,6 @@ if __name__ == '__main__':
     my_new_car.print_remain_gas()
 
     my_new_car.battary.describe_battary()
+
+
+    

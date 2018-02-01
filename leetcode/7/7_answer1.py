@@ -3,7 +3,7 @@
 class solution(object):
     """docstring for solution"""
     def reverse(self, x):
-        s = cmp(x,0)
+        s = cmp(x,0)    # 判断正负号
         r = int(`s*x`[::-1])    # ``转化成string型，[::1]将列表或者字符倒过来
         return s*r*(r<2**31)
 

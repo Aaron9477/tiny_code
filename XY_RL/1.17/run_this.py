@@ -67,3 +67,4 @@ if __name__ == "__main__":
     if model_save:
         RL.model_saver()
     RL.plot_cost()
+    env.plot_error_change()

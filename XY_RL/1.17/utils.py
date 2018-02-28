@@ -6,6 +6,7 @@ import argparse
 import numpy as np
 import time
 import datetime
+import math
 
 def get_time():
     return time.asctime(time.localtime(time.time()))
@@ -35,3 +36,9 @@ def search(path=".", name="1"):
 
 def square(x):
     return x*x
+
+def error_square(input, value):
+    sum = 0
+    for i in range(len(input)):
+        sum += square(input[i] - value)
+    return math.sqrt(sum)

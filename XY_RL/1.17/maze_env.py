@@ -53,8 +53,11 @@ class Maze(tk.Tk, object):
         self.distance_range = None  # 得到无人机之间的距离范围 这个距离不能过小，像[18，20]会导致震荡
         self.input_rate = None  # 将输入归一化 神经网络输入都要归一化！！！！！！
         self.random_choose_get_range()  # 随机生成合理的环境信息 并得到范围和归一化的值
-        self.best_distance = 0
+        self.best_distance = 0  # 每次实验中的奖励值最大的位置
         self.stay_time = 0  # 记录无人机持续在规定范围内的时间长度
+        self.distance_group = []    # 记录在一次实验中的距离变化
+        self.error_history = [] # 记录每次实验中的误差变化趋势
+        self.period_choose = 5  # 每次用于计算最终稳定距离大小和误差取的时间片长度
         # self.done_time = 5 # 规定无人机持续在规定范围内多久才可以置done标志位 从而进入下一次循环
         self.done_time = 20 # 规定无人机运动多少次之后才可以置done标志位 从而进入下一次循环
         self.title('maze')
@@ -161,16 +164,23 @@ class Maze(tk.Tk, object):
             #  这里加两个端点的奖励值，是为了让奖励值平滑，发现奖励值平滑容易收敛
             reward = distance - self.distance_range[0] + self.get_reward(self.distance_range[0])
         elif distance > self.distance_range[1]:
-            reward = self.distance_range[1] - distance  + self.get_reward(self.distance_range[1])
-        elif distance == self.best_distance:
-            reward = 50
+            reward = self.distance_range[1] - distance + self.get_reward(self.distance_range[1])
+        # elif distance == self.best_distance:
+        #     reward = 50
         else:
             reward = int(self.get_reward(distance))  # 根据两机距离计算奖励值，神经网络只能输入int型！！！！！！
         self.stay_time += 1 # 运行时间+1
+        self.distance_group.append(distance)
 
         if self.stay_time >= self.done_time:
             done = True
             self.stay_time = 0  # 本次结束，清零
+            result_distance = sum(self.distance_group[-self.period_choose:])/self.period_choose # 取后5次做平均
+            error = u.error_square(self.distance_group[-self.period_choose:], self.best_distance)   # 取后5次的误差
+            self.error_history.append(error)
+            print('最后一段时间的平均距离是：', result_distance)
+            print('最后一段时间的误差是：', error)
+            self.distance_group.clear() # 清空本次仿真记录的值
 
         print('当前奖励值为：', reward)
 
@@ -258,6 +268,13 @@ class Maze(tk.Tk, object):
                 this_distance = i
                 max_reward = self.get_reward(i)
         return [this_distance, max_reward]
+
+    def plot_error_change(self):
+        import matplotlib.pyplot as plt
+        plt.plot(np.arange(len(self.error_history)), self.error_history)
+        plt.ylabel('error')
+        plt.xlabel('training steps')
+        plt.show()
 
 
 

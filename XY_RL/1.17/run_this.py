@@ -8,7 +8,7 @@ model_save = False
 
 def run_maze():
     step = 0
-    for episode in range(300):
+    for episode in range(1000):
         # initial observation
         observation = env.reset()
         print("begin")
@@ -52,11 +52,11 @@ if __name__ == "__main__":
     RL = DeepQNetwork(env.n_actions, env.n_features,
                       learning_rate=0.01,
                       reward_decay=0.9,
-                      e_greedy=0.95,
+                      e_greedy=0.98,   # 最终不再探索
                       replace_target_iter=300,
                       memory_size=4800,
                       e_greedy_origin=0.7,
-                      e_greedy_increment = 0.00002,
+                      e_greedy_increment = 0.0005,  # epsilon增长速度
                       model_load = False,
                       model_load_dir = "save/{time}/model.ckpt",
                       model_save_dir = "save/{time}/model.ckpt".format(time=time_string),

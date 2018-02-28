@@ -74,7 +74,6 @@ class DeepQNetwork:
 
         self.sess.run(tf.global_variables_initializer())    # 运行必须的命令
         if self.model_load:
-
             saver = tf.train.Saver()
             saver.restore(self.sess, self.model_load_dir)
             print("Model restored")
@@ -90,7 +89,7 @@ class DeepQNetwork:
             # c_names(collections_names) are the collections to store variables # collections_names是一个用于储存参数的集合的名称
             # n_l1是神经元的数量，这里改为100个
             c_names, n_l1, w_initializer, b_initializer = \
-                ['eval_net_params', tf.GraphKeys.GLOBAL_VARIABLES], 100, \
+                ['eval_net_params', tf.GraphKeys.GLOBAL_VARIABLES], 200, \
                 tf.random_normal_initializer(0., 0.3), tf.constant_initializer(0.1)  # config of layers
 
             # first layer. collections is used later when assign to target net
@@ -101,14 +100,17 @@ class DeepQNetwork:
 
             # second layer. collections is used later when assign to target net
             with tf.variable_scope('l2'):
-                w2 = tf.get_variable('w2', [n_l1, self.n_actions], initializer=w_initializer, collections=c_names)
-                b2 = tf.get_variable('b2', [1, self.n_actions], initializer=b_initializer, collections=c_names)
-                self.q_eval = tf.matmul(l1, w2) + b2
-
+                w2 = tf.get_variable('w2', [n_l1, n_l1], initializer=w_initializer, collections=c_names)
+                b2 = tf.get_variable('b2', [1, n_l1], initializer=b_initializer, collections=c_names)
+                # self.q_eval = tf.matmul(l1, w2) + b2
+                l2 = tf.nn.relu(tf.matmul(l1, w2) + b2)
+            # 修改网络时，除了输入输出要改，中间的w和b的维度也要相应进行修改
             with tf.variable_scope('l3'):
-                w3 = tf.get_variable('w3', [self.n_features, n_l1], initializer=w_initializer, collections=c_names)
-                b3 = tf.get_variable('b3', [1, n_l1], initializer=b_initializer, collections=c_names)
-                l3 = tf.nn.relu(tf.matmul(self.s, w3) + b3)
+                w3 = tf.get_variable('w3', [n_l1, self.n_actions], initializer=w_initializer, collections=c_names)
+                b3 = tf.get_variable('b3', [1, self.n_actions], initializer=b_initializer, collections=c_names)
+                # l3 = tf.nn.relu(tf.matmul(self.s, w3) + b3)
+                self.q_eval = tf.matmul(l2, w3) + b3
+
 
         with tf.variable_scope('loss'):
             self.loss = tf.reduce_mean(tf.squared_difference(self.q_target, self.q_eval))   # loss
@@ -131,14 +133,17 @@ class DeepQNetwork:
 
             # second layer. collections is used later when assign to target net
             with tf.variable_scope('l2'):
-                w2 = tf.get_variable('w2', [n_l1, self.n_actions], initializer=w_initializer, collections=c_names)
-                b2 = tf.get_variable('b2', [1, self.n_actions], initializer=b_initializer, collections=c_names)
-                self.q_next = tf.matmul(l1, w2) + b2
+                w2 = tf.get_variable('w2', [n_l1, n_l1], initializer=w_initializer, collections=c_names)
+                b2 = tf.get_variable('b2', [1, n_l1], initializer=b_initializer, collections=c_names)
+                # self.q_next = tf.matmul(l1, w2) + b2
+                l2 = tf.nn.relu(tf.matmul(l1, w2) + b2)
 
             with tf.variable_scope('l3'):
-                w3 = tf.get_variable('w3', [self.n_features, n_l1], initializer=w_initializer, collections=c_names)
-                b3 = tf.get_variable('b3', [1, n_l1], initializer=b_initializer, collections=c_names)
-                l3 = tf.nn.relu(tf.matmul(self.s, w3) + b3)
+                w3 = tf.get_variable('w3', [n_l1, self.n_actions], initializer=w_initializer, collections=c_names)
+                b3 = tf.get_variable('b3', [1, self.n_actions], initializer=b_initializer, collections=c_names)
+                # l3 = tf.nn.relu(tf.matmul(self.s, w3) + b3)
+                self.q_next = tf.matmul(l2, w3) + b3
+
 
     def store_transition(self, s, a, r, s_):
         if not hasattr(self, 'memory_counter'): # 循环覆盖
@@ -231,7 +236,7 @@ class DeepQNetwork:
 
         # increasing epsilon
         self.epsilon = self.epsilon + self.epsilon_increment if self.epsilon < self.epsilon_max else self.epsilon_max
-        # print("epsilon: ", self.epsilon)  # 输出epsilon
+        print("epsilon: ", self.epsilon)  # 输出epsilon
         self.learn_step_counter += 1
 
     def plot_cost(self):

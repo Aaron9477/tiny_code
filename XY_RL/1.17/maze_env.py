@@ -53,8 +53,10 @@ class Maze(tk.Tk, object):
         self.distance_range = None  # 得到无人机之间的距离范围 这个距离不能过小，像[18，20]会导致震荡
         self.input_rate = None  # 将输入归一化 神经网络输入都要归一化！！！！！！
         self.random_choose_get_range()  # 随机生成合理的环境信息 并得到范围和归一化的值
+        self.best_distance = 0
         self.stay_time = 0  # 记录无人机持续在规定范围内的时间长度
-        self.done_time = 5 # 规定无人机持续在规定范围内多久才可以置done标志位 从而进入下一次循环
+        # self.done_time = 5 # 规定无人机持续在规定范围内多久才可以置done标志位 从而进入下一次循环
+        self.done_time = 20 # 规定无人机运动多少次之后才可以置done标志位 从而进入下一次循环
         self.title('maze')
         self.geometry('{0}x{1}'.format(TOTAL_HIGH, TOTAL_LENGTH))   # 画布大小
         self._build_maze()  # 在init中执行，相当于构造函数
@@ -112,7 +114,11 @@ class Maze(tk.Tk, object):
         # 得到距离信息 并归一化 此处可以把除数换成总长的一半，因为目标点一直在中心
         distance_rate = (self.canvas.coords(self.rect)[0] - np.array(self.canvas.coords(self.oval)[0])) / TOTAL_LENGTH
         print(np.append(self.input_rate, distance_rate))
-        return (np.append(self.input_rate, distance_rate))
+        # 返回未归一化的环境信息
+        env = [T_down[self.input[0]], W_down[self.input[1]], R_down[self.input[2]], distance_rate]
+        return (np.array(env))
+        # 返回归一化的环境信息
+        # return (np.append(self.input_rate, distance_rate))
 
         # print((np.array(self.canvas.coords(self.rect)[:2]) - np.array(self.canvas.coords(self.oval)[:2])) / TOTAL_LENGTH)
         # return (np.array(self.canvas.coords(self.rect)[:2]) - np.array(self.canvas.coords(self.oval)[:2])) / TOTAL_LENGTH
@@ -120,6 +126,7 @@ class Maze(tk.Tk, object):
     def step(self, action):
         s = self.canvas.coords(self.rect)   # 原位置
         base_action = np.array([0, 0])  # 基准点
+        done = False    # 定义done
         # 防止走出画布
         if action == 0:   # left
             if s[0] > STEP_SIZE*UNIT:
@@ -138,27 +145,37 @@ class Maze(tk.Tk, object):
         distance = abs(next_coords[0] - self.canvas.coords(self.oval)[0]) / (STEP_SIZE * UNIT)
         print("飞机间的距离是： ", distance)
         # reward function
-        if next_coords == self.canvas.coords(self.oval):    # 两机相撞，结束
-            reward = -50
-            done = True
-        elif distance<self.distance_range[0] or distance>self.distance_range[1]:    # 在范围外就负奖励
-            reward = -20
-            done = False
-            self.stay_time = 0  # 出了规定区域，重置时间
+        # if next_coords == self.canvas.coords(self.oval):    # 两机相撞，结束
+        #     reward = -50
+        #     done = True
+        # elif distance<self.distance_range[0] or distance>self.distance_range[1]:    # 在范围外就负奖励
+        #     reward = -20
+        #     done = False
+        #     self.stay_time = 0  # 出了规定区域，重置时间
+        # else:
+        #     reward = int(self.get_reward(distance))  # 根据两机距离计算奖励值，神经网络只能输入int型！！！！！！！！！！！！！！！！！
+        #     self.stay_time += 1 # 保持在规定区域
+        #     done = False
+
+        if distance < self.distance_range[0]:   # 在范围外就负奖励
+            #  这里加两个端点的奖励值，是为了让奖励值平滑，发现奖励值平滑容易收敛
+            reward = distance - self.distance_range[0] + self.get_reward(self.distance_range[0])
+        elif distance > self.distance_range[1]:
+            reward = self.distance_range[1] - distance  + self.get_reward(self.distance_range[1])
+        elif distance == self.best_distance:
+            reward = 50
         else:
-            reward = int(self.get_reward(distance))  # 根据两机距离计算奖励值，神经网络只能输入int型！！！！！！！！！！！！！！！！！
-            self.stay_time += 1 # 保持在规定区域
-            done = False
+            reward = int(self.get_reward(distance))  # 根据两机距离计算奖励值，神经网络只能输入int型！！！！！！
+        self.stay_time += 1 # 运行时间+1
 
         if self.stay_time >= self.done_time:
-            reward = 50
             done = True
             self.stay_time = 0  # 本次结束，清零
 
-        print(reward)
+        print('当前奖励值为：', reward)
 
         distance_rate = (self.canvas.coords(self.rect)[0] - np.array(self.canvas.coords(self.oval)[0])) / TOTAL_LENGTH
-        s_ = (np.append(self.input_rate, distance_rate))    # 下一步的状态
+        s_ = (np.append(self.input_rate, distance_rate))    # 下一步的状态，input_rate包括环境信息，加上距离信息
 
         # s_ = (np.array(next_coords[:2]) - np.array(self.canvas.coords(self.oval)[:2])) / TOTAL_LENGTH   # s_是相对于终点的坐标差
         return s_, reward, done
@@ -209,7 +226,9 @@ class Maze(tk.Tk, object):
         print("正在随机产生数据...")
         while True:
             # 随机产生数据
-            self.input = [np.random.randint(len(T_down)), np.random.randint(len(W_down)), np.random.randint(len(R_down))]
+            # self.input = [np.random.randint(len(T_down)), np.random.randint(len(W_down)), np.random.randint(len(R_down))]
+            # 固定环境信息为 任务1 风速2 降雨量2
+            self.input = [0,1,1]
             range_down = max(T_down[self.input[0]], W_down[self.input[1]], R_down[self.input[2]])   # 得到距离最小值
             range_up = T_up[self.input[0]]  # 距离最大值
             if range_up-range_down >= self.min_range:   # 判断是否在合理距离范围内
@@ -217,6 +236,11 @@ class Maze(tk.Tk, object):
                 # 归一化
                 self.input_rate = np.array([self.input[0] / len(T_down), self.input[1] / len(W_down), self.input[2] / len(R_down)])
                 self.distance_range = [range_down, range_up]
+                # 简洁方式求得最大reward
+                # self.distance_max_reward = max(list(map(lambda x: self.get_reward(x), self.distance_range)))
+                self.best_distance, max_reward = self.get_distance_max_reward(self.distance_range)
+                print("范围：", str(self.distance_range))
+                print("最大奖励值的位置：", str(self.best_distance), " 最大奖励值为：", str(max_reward))
                 break   # 数据合理 跳出
             else:
                 print("随机得到的数据不符合要求，重新随机产生数据")
@@ -225,3 +249,15 @@ class Maze(tk.Tk, object):
     def get_reward(self, d):
         R = 0.3*d + 0.2*0.05*u.square(d) - 0.5*10000/u.square(d) + 10
         return R
+
+    def get_distance_max_reward(self, input):
+        max_reward = -100
+        this_distance = 0
+        for i in range(input[0], input[1]+1):
+            if self.get_reward(i) > max_reward:
+                this_distance = i
+                max_reward = self.get_reward(i)
+        return [this_distance, max_reward]
+
+
+

@@ -64,7 +64,7 @@ class Maze(tk.Tk, object):
         self.geometry('{0}x{1}'.format(TOTAL_HIGH, TOTAL_LENGTH))   # 画布大小
         self._build_maze()  # 在init中执行，相当于构造函数
 
-    def _build_maze(self):  # GUI, wait changing!!!!!!!!!!!!!!!!!!!!!!!!!!1
+    def _build_maze(self):  # GUI, wait changing!!!!!!!!!!!!!!!!!!!!!!!!!!
         self.canvas = tk.Canvas(self, bg='white',   # 画布大小设定
                            height=TOTAL_HIGH,
                            width=TOTAL_LENGTH)

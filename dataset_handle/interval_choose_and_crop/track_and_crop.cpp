@@ -119,8 +119,6 @@ void read_options(int argc, char** argv){
 	printf("after reading argument\n");
 }
 
-
-
 int main(int argc, char** argv){
 	// can change to BOOSTING, MIL, KCF (OpenCV 3.1), TLD, MEDIANFLOW, or GOTURN (OpenCV 3.2)
 	// Ptr<Tracker> tracker = Tracker::create("KCF"); 
@@ -183,7 +181,28 @@ int main(int argc, char** argv){
 				box.height = frame.rows - box.y;
 			}
     	}
-		
+
+		if (save_image)
+		{
+			if (num_frame % interval == 0){
+				string six_string = int_to_6_string(num_saved_pic); 
+				string pic_name = six_string + ".jpg";
+				string xml_name = six_string + ".xml";
+				string pic_dir = save_root + "/JPEGImages/" + pic_name;
+				string xml_dir = save_root + "/Annotations/" + xml_name; 
+				imwrite(pic_dir, frame);
+    			if(saveXML(pic_name, pic_dir, "t", box.x, box.y, 
+					box.x+box.width, box.y+box.height, xml_dir) == FAILURE){
+					return 1;
+				}
+				++ num_saved_pic;
+			}
+			++ num_frame;
+			if(num_frame % 100 == 0){
+				printf("have handled %d frames and have saved %d pictures\n", num_frame, num_saved_pic);
+			}
+		}
+
 		if(show_image){
 			rectangle(frame, box, Scalar(255, 0, 0), 2, 1);//如果存储图片就不画框
 			imshow("Tracking", frame);
@@ -206,27 +225,6 @@ int main(int argc, char** argv){
 				Ptr<TrackerKCF> tracker2 = TrackerKCF::createTracker();
 				tracker = tracker2;
 				tracker -> init(frame, box);
-			}
-		}
-
-		if (save_image)
-		{
-			if (num_frame % interval == 0){
-				string six_string = int_to_6_string(num_saved_pic); 
-				string pic_name = six_string + ".jpg";
-				string xml_name = six_string + ".xml";
-				string pic_dir = save_root + "/JPEGImages/" + pic_name;
-				string xml_dir = save_root + "/Annotations/" + xml_name; 
-				imwrite(pic_dir, frame);
-    			if(saveXML(pic_name, pic_dir, "t", box.x, box.y, 
-					box.x+box.width, box.y+box.height, xml_dir) == FAILURE){
-					return 1;
-				}
-				++ num_saved_pic;
-			}
-			++ num_frame;
-			if(num_frame % 100 == 0){
-				printf("have handled %d frames and have saved %d pictures\n", num_frame, num_saved_pic);
 			}
 		}
 	}

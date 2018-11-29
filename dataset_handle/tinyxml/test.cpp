@@ -1,9 +1,11 @@
-#include "tinyxml.h"
-#include <iostream>
-#include <string>
-#include <iomanip>
-#include <sstream>
-using namespace std;
+// #include "tinyxml.h"
+// #include <iostream>
+// #include <string>
+// #include <iomanip>
+// #include <sstream>
+// using namespace std;
+
+#include "test.h"
 
 string int_to_string(int input_int){
 	ostringstream stream;
@@ -24,16 +26,8 @@ string int_to_6_string(int input_int){
     return tmp;
 }
 
-struct bbox{
-    int xmin;
-    int ymin;
-    int xmax;
-    int ymax;
-};
-
-enum SuccessEnum {FAILURE, SUCCESS};
-
-SuccessEnum saveXML(string pic_name, string pic_path, string pic_type, bbox target)
+SuccessEnum saveXML(string pic_name, string pic_path, string pic_type, int coor_xmin, 
+                    int coor_ymin, int coor_xmax, int coor_ymax, string xml_dir)
 {
     TiXmlDocument doc;
 
@@ -120,27 +114,27 @@ SuccessEnum saveXML(string pic_name, string pic_path, string pic_type, bbox targ
         {
             TiXmlElement* xmin = new TiXmlElement("xmin");
             bndbox -> LinkEndChild(xmin);
-            TiXmlText* xmin_text = new TiXmlText(int_to_string(target.xmin).c_str());  ///string -> char*
+            TiXmlText* xmin_text = new TiXmlText(int_to_string(coor_xmin).c_str());  ///string -> char*
             xmin -> LinkEndChild(xmin_text);
 
             TiXmlElement* ymin = new TiXmlElement("ymin");
             bndbox -> LinkEndChild(ymin);
-            TiXmlText* ymin_text = new TiXmlText(int_to_string(target.ymin).c_str());  ///string -> char*
+            TiXmlText* ymin_text = new TiXmlText(int_to_string(coor_ymin).c_str());  ///string -> char*
             ymin -> LinkEndChild(ymin_text);
 
             TiXmlElement* xmax = new TiXmlElement("xmax");
             bndbox -> LinkEndChild(xmax);
-            TiXmlText* xmax_text = new TiXmlText(int_to_string(target.xmax).c_str());  ///string -> char*
+            TiXmlText* xmax_text = new TiXmlText(int_to_string(coor_xmax).c_str());  ///string -> char*
             xmax -> LinkEndChild(xmax_text);
             
             TiXmlElement* ymax = new TiXmlElement("ymax");
             bndbox -> LinkEndChild(ymax);
-            TiXmlText* ymax_text = new TiXmlText(int_to_string(target.ymax).c_str());  ///string -> char*
+            TiXmlText* ymax_text = new TiXmlText(int_to_string(coor_ymax).c_str());  ///string -> char*
             ymax -> LinkEndChild(ymax_text);
         }
     }
 
-    bool success = doc.SaveFile("b.xml");
+    bool success = doc.SaveFile(xml_dir.c_str());
     doc.Clear();
 
     if(success)
@@ -149,14 +143,14 @@ SuccessEnum saveXML(string pic_name, string pic_path, string pic_type, bbox targ
         return FAILURE;
 }
 
-int main(int argc, char* argv[])
-{
-    int pic_name = 1;
-    string pic_path = "das/fds";
-    string pic_type = "t";
-    struct bbox target = {1, 2, 3, 4};
-    string pic_name_string =  int_to_6_string(pic_name);
-    if(saveXML(pic_name_string, pic_path, pic_type, target) == FAILURE)
-        return 1;
-    return 0;
-}
+// int main(int argc, char* argv[])
+// {
+//     int pic_name = 1;
+//     string pic_path = "das/fds";
+//     string pic_type = "t";
+//     struct bbox target = {1, 2, 3, 4};
+//     string pic_name_string =  int_to_6_string(pic_name);
+//     if(saveXML(pic_name_string, pic_path, pic_type, target) == FAILURE)
+//         return 1;
+//     return 0;
+// }

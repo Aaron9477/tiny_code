@@ -71,6 +71,12 @@ INCS :=
 
 
 #****************************************************************************
+# Changed by WYZ
+#****************************************************************************
+CFLAGS += -DOPENCV
+CXXFLAGS += `pkg-config opencv --libs --cflags`
+
+#****************************************************************************
 # Makefile code common to all platforms
 #****************************************************************************
 
@@ -81,7 +87,7 @@ CXXFLAGS := ${CXXFLAGS} ${DEFS}
 # Targets of the build
 #****************************************************************************
 
-OUTPUT := test
+OUTPUT := track_and_crop
 
 all: ${OUTPUT}
 
@@ -90,7 +96,7 @@ all: ${OUTPUT}
 # Source files
 #****************************************************************************
 
-SRCS := tinyxml.cpp tinyxmlparser.cpp test.cpp tinyxmlerror.cpp tinystr.cpp
+SRCS := tinyxml.cpp tinyxmlparser.cpp test.cpp tinyxmlerror.cpp tinystr.cpp track_and_crop.cpp
 
 # Add on the sources for libraries
 SRCS := ${SRCS}
@@ -102,7 +108,7 @@ OBJS := $(addsuffix .o,$(basename ${SRCS}))
 #****************************************************************************
 
 ${OUTPUT}: ${OBJS}
-	${LD} -o $@ ${LDFLAGS} ${OBJS} ${LIBS} ${EXTRA_LIBS}
+	${LD} -o $@ ${LDFLAGS} ${OBJS} ${LIBS} ${EXTRA_LIBS} `pkg-config opencv --libs --cflags`
 
 #****************************************************************************
 # common rules
@@ -126,5 +132,7 @@ depend:
 
 tinyxml.o: tinyxml.h tinystr.h
 tinyxmlparser.o: tinyxml.h tinystr.h
-test.o: tinyxml.h tinystr.h
 tinyxmlerror.o: tinyxml.h tinystr.h
+test.o: tinyxml.h tinystr.h test.h
+track_and_crop.o: test.h
+

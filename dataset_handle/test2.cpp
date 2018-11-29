@@ -13,6 +13,8 @@ int main(int argc, char const *argv[])
     cout << ss.str() <<endl;
     cout<< ss.str().c_str() <<endl;
 
+    string b = ''
+
     return 0;
 }
 

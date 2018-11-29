@@ -153,7 +153,9 @@ int main(int argc, char** argv){
 		waitKey(1);//维持imshow
 		if(drawing_box){//不断更新正在画的矩形
 			frame.copyTo(temp);//这句放在这里是保证了每次更新矩形框都是在没有原图的基础上更新矩形框。
-			rectangle(temp, box, Scalar(255, 255, 255), 2, 1);
+			line(temp, Point(1, box.y+box.height), Point(1920, box.y+box.height), Scalar(0,255,0), 2, CV_AA);
+			line(temp, Point(box.x+box.width, 1), Point(box.x+box.width, 1080), Scalar(0,255,0), 2, CV_AA);
+			rectangle(temp, box, Scalar(0, 255, 0), 2, 1);
 			imshow("Tracking", temp);//显示
 		}
 	}
@@ -216,7 +218,9 @@ int main(int argc, char** argv){
 					waitKey(1);//维持imshow
 					if(drawing_box){//不断更新正在画的矩形
 						frame.copyTo(temp);//这句放在这里是保证了每次更新矩形框都是在没有原图的基础上更新矩形框。
-						rectangle(temp, box, Scalar(255, 255, 255), 2, 1);
+						line(temp, Point(1, box.y+box.height), Point(1920, box.y+box.height), Scalar(0,255,0), 2, CV_AA);
+						line(temp, Point(box.x+box.width, 1), Point(box.x+box.width, 1080), Scalar(0,255,0), 2, CV_AA);
+						rectangle(temp, box, Scalar(0, 255, 0), 2, 1);
 						imshow("Tracking", temp);//显示
 					}
 				}

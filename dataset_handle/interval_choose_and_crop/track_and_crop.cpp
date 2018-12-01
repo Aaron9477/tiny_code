@@ -1,3 +1,11 @@
+////////////////////////////////////////////////////
+//	用于在视频流中跟踪目标物体,并且以VOC数据集格式,存储数据
+//	ESC退出,跟踪失效时按space暂停,重新画取bbox
+//  注意:处理多个视频时,每处理完一个视频,需要更新存储图片的顺序号
+////////////////////////////////////////////////////
+// 	TODO:1.数据集文件夹创建 2.设定(自动识别)视频流的分别率,注意使用的地方不止show中,还有画线中
+//		 3.跟踪过程中输入跟踪物体类别
+////////////////////////////////////////////////////
 #include <opencv2/opencv.hpp>
 #include <opencv2/tracking.hpp>
 #include <iostream>
@@ -9,13 +17,16 @@ using namespace std;
 using namespace cv;
 
 
+
 // 下面需要改动！！！！！！！！！！！！！！！！！！！！！！！！！！
 bool use_default_video_adress = false;
-string video_adress = "/media/zq610/2C9BDE0469DC4DFC/ubuntu/dl_dataset/turtlebot/raw_videos/turtlebot2_1.mp4";	//设定默认视频地址，也可以在参数里改
+string video_adress = "/media/zq610/2C9BDE0469DC4DFC/ubuntu/dl_dataset/turtlebot/raw_videos/two_small_4.mp4";	//设定默认视频地址，也可以在参数里改
 bool save_image = true;	//默认不储存
 bool use_default_save_root = false;
 string save_root = "/media/zq610/2C9BDE0469DC4DFC/ubuntu/dl_dataset/turtlebot/VOC_type";	//默认存储位置,目录下应有Annotations和ImageSets
 int interval = 15;	// the interval between two saved picture
+string track_object_type = "car";
+int saved_pic_start = 879;
 // 上面需要改动！！！！！！！！！！！！！！！！！！！！！！！！！！！！
 
 Rect2d box;	// 矩形对象,全局作用
@@ -163,7 +174,7 @@ int main(int argc, char** argv){
 	//Rect2d box(270, 120, 180, 260);
 	tracker->init(frame, box);
 	int num_frame = 1;
-	int num_saved_pic = 1;
+	int num_saved_pic = saved_pic_start;
 	while(video.read(frame)){
 		tracker->update(frame, box);
 		
@@ -193,7 +204,7 @@ int main(int argc, char** argv){
 				string pic_dir = save_root + "/JPEGImages/" + pic_name;
 				string xml_dir = save_root + "/Annotations/" + xml_name; 
 				imwrite(pic_dir, frame);
-    			if(saveXML(pic_name, pic_dir, "t", box.x, box.y, 
+    			if(saveXML(pic_name, pic_dir, track_object_type, box.x, box.y, 
 					box.x+box.width, box.y+box.height, xml_dir) == FAILURE){
 					return 1;
 				}
@@ -201,7 +212,7 @@ int main(int argc, char** argv){
 			}
 			++ num_frame;
 			if(num_frame % 100 == 0){
-				printf("have handled %d frames and have saved %d pictures\n", num_frame, num_saved_pic);
+				printf("have handled %d frames and have saved %d pictures\n", num_frame, num_saved_pic-saved_pic_start+1);
 			}
 		}
 
@@ -232,5 +243,5 @@ int main(int argc, char** argv){
 			}
 		}
 	}
-	printf("finished tagging this video, and save %d pictures and xmls\n", num_saved_pic);
+	printf("finished tagging this video, and save %d pictures and xmls\n", num_saved_pic-saved_pic_start+1);
 }

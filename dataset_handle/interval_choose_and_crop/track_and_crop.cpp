@@ -10,6 +10,7 @@
 #include <opencv2/tracking.hpp>
 #include <iostream>
 #include <iomanip>
+#include <unistd.h>
 #include "tinyxml.h"
 #include "write_xml.h"
 
@@ -20,13 +21,13 @@ using namespace cv;
 
 // 下面需要改动！！！！！！！！！！！！！！！！！！！！！！！！！！
 bool use_default_video_adress = false;
-string video_adress = "/media/zq610/2C9BDE0469DC4DFC/ubuntu/dl_dataset/turtlebot/raw_videos/two_small_4.mp4";	//设定默认视频地址，也可以在参数里改
+string video_adress = "/media/zq610/2C9BDE0469DC4DFC/ubuntu/dl_dataset/turtlebot/raw_videos_test/test_1.mp4";	//设定默认视频地址，也可以在参数里改
 bool save_image = true;	//默认不储存
 bool use_default_save_root = false;
-string save_root = "/media/zq610/2C9BDE0469DC4DFC/ubuntu/dl_dataset/turtlebot/VOC_type";	//默认存储位置,目录下应有Annotations和ImageSets
+string save_root = "/media/zq610/2C9BDE0469DC4DFC/ubuntu/dl_dataset/turtlebot/VOC_type/turtlebot_test";	//默认存储位置,目录下应有Annotations和ImageSets
 int interval = 15;	// the interval between two saved picture
-string track_object_type = "car";
-int saved_pic_start = 879;
+string track_object_type = "t";
+int saved_pic_start = 1;
 // 上面需要改动！！！！！！！！！！！！！！！！！！！！！！！！！！！！
 
 Rect2d box;	// 矩形对象,全局作用
@@ -54,6 +55,16 @@ bool show_image = true;	// whether show the tracking process
 //     }
 //     return tmp;
 // }
+
+bool dirExists(const string& dirname){
+	int flag = access(dirname.c_str(), 0);
+	if(flag == 0){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
 
 int string_to_int(string intput_string){
 	int output_int;
@@ -134,6 +145,17 @@ int main(int argc, char** argv){
 	// can change to BOOSTING, MIL, KCF (OpenCV 3.1), TLD, MEDIANFLOW, or GOTURN (OpenCV 3.2)
 	// Ptr<Tracker> tracker = Tracker::create("KCF"); 
 	//TrackerKCF::Params::read("/usr/q.txt");
+	string jpeg_dir = save_root + "/JPEGImages/";
+	string anno_dir = save_root + "/Annotations/";
+	if (not(dirExists(jpeg_dir))){
+		string cmd = "mkdir " + jpeg_dir;
+		system(cmd.c_str());
+	} 
+	if (not(dirExists(anno_dir))){
+		string cmd = "mkdir " + anno_dir;
+		system(cmd.c_str()); 
+	}
+
 	Ptr<TrackerKCF> tracker = TrackerKCF::createTracker();
 	read_options(argc, argv);
 

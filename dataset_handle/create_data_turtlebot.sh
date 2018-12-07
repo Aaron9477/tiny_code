@@ -7,7 +7,7 @@ cd $root_dir
 redo=1
 # data_root_dir="$HOME/WYZ/deeplearning/network/ssd-caffe/caffe/data/VOCdevkit/"
 data_root_dir=/home/zq610/WYZ/deeplearning/network/ssd-caffe/caffe/data/VOC_type
-config_dir="$data_root_dir/turtlebot"
+config_dir="$data_root_dir/turtlebot_test"
 
 dataset_name="turtlebot"
 mapfile="$config_dir/labelmap_voc.prototxt"
@@ -26,6 +26,6 @@ fi
 
 python $root_dir/scripts/create_annoset.py --anno-type=$anno_type --label-map-file=$mapfile --min-dim=$min_dim \
 --max-dim=$max_dim --resize-width=$width --resize-height=$height --check-label \
-$extra_cmd $data_root_dir $config_dir/trainval.txt \
-$data_root_dir/$dataset_name/$db/$dataset_name"_"trainval"_"$db examples/$dataset_name
+$extra_cmd $data_root_dir $config_dir/test.txt \
+$data_root_dir/$dataset_name/$db/$dataset_name"_"test"_"$db examples/$dataset_name
 

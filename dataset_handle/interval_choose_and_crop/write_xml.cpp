@@ -1,10 +1,3 @@
-// #include "tinyxml.h"
-// #include <iostream>
-// #include <string>
-// #include <iomanip>
-// #include <sstream>
-// using namespace std;
-
 #include "write_xml.h"
 
 string int_to_string(int input_int){

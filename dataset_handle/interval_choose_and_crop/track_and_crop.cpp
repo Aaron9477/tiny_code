@@ -9,7 +9,8 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/tracking.hpp>
 #include <iostream>
-#include <iomanip>
+// #include <iomanip>
+// access函数使用的库文件,access用于检查路径是否存在
 #include <unistd.h>
 #include "tinyxml.h"
 #include "write_xml.h"
@@ -57,6 +58,7 @@ bool show_image = true;	// whether show the tracking process
 // }
 
 bool dirExists(const string& dirname){
+	// flag 0 means judge whether the file exists
 	int flag = access(dirname.c_str(), 0);
 	if(flag == 0){
 		return true;
@@ -145,17 +147,19 @@ int main(int argc, char** argv){
 	// can change to BOOSTING, MIL, KCF (OpenCV 3.1), TLD, MEDIANFLOW, or GOTURN (OpenCV 3.2)
 	// Ptr<Tracker> tracker = Tracker::create("KCF"); 
 	//TrackerKCF::Params::read("/usr/q.txt");
-	string jpeg_dir = save_root + "/JPEGImages/";
-	string anno_dir = save_root + "/Annotations/";
-	if (not(dirExists(jpeg_dir))){
-		string cmd = "mkdir " + jpeg_dir;
-		system(cmd.c_str());
-	} 
-	if (not(dirExists(anno_dir))){
-		string cmd = "mkdir " + anno_dir;
-		system(cmd.c_str()); 
+	if(save_image){
+		string jpeg_dir = save_root + "/JPEGImages/";
+		string anno_dir = save_root + "/Annotations/";
+		if (not(dirExists(jpeg_dir))){
+			string cmd = "mkdir " + jpeg_dir;
+			system(cmd.c_str());
+		} 
+		if (not(dirExists(anno_dir))){
+			string cmd = "mkdir " + anno_dir;
+			system(cmd.c_str()); 
+		}
 	}
-
+	
 	Ptr<TrackerKCF> tracker = TrackerKCF::createTracker();
 	read_options(argc, argv);
 
@@ -199,7 +203,6 @@ int main(int argc, char** argv){
 	int num_saved_pic = saved_pic_start;
 	while(video.read(frame)){
 		tracker->update(frame, box);
-		
 		// if roi-box cross the border, and handle this
 		if (!(0<=box.x && box.x+box.width<=frame.cols && 0<=box.y && box.y+box.height<=frame.rows)){
 			printf("There is somewhere cross the border!\n");

@@ -5,8 +5,8 @@ import utils
 import os
 import random
 
-target_dir = "/media/zq610/2C9BDE0469DC4DFC/ubuntu/dl_dataset/turtlebot/VOC_type/turtlebot_test/ImageSets/Main"
-num_pix = 27
+target_dir = "/media/zq610/2C9BDE0469DC4DFC/ubuntu/dl_dataset/turtlebot/VOC_type/turtlebot_test2/ImageSets/Main"
+num_pix = 445
 val_percent = 0.2
 
 def build_val_txt():

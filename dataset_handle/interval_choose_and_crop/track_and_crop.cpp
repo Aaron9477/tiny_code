@@ -22,13 +22,13 @@ using namespace cv;
 
 // 下面需要改动！！！！！！！！！！！！！！！！！！！！！！！！！！
 bool use_default_video_adress = false;
-string video_adress = "/media/zq610/2C9BDE0469DC4DFC/ubuntu/dl_dataset/turtlebot/raw_videos_test/test_1.mp4";	//设定默认视频地址，也可以在参数里改
+string video_adress = "/media/zq610/2C9BDE0469DC4DFC/ubuntu/dl_dataset/turtlebot/raw_videos/turtlebot3_12.mp4";	//设定默认视频地址，也可以在参数里改
 bool save_image = true;	//默认不储存
 bool use_default_save_root = false;
-string save_root = "/media/zq610/2C9BDE0469DC4DFC/ubuntu/dl_dataset/turtlebot/VOC_type/turtlebot_test";	//默认存储位置,目录下应有Annotations和ImageSets
+string save_root = "/media/zq610/2C9BDE0469DC4DFC/ubuntu/dl_dataset/turtlebot/VOC_type/turtlebot";	//默认存储位置,目录下应有Annotations和ImageSets
 int interval = 15;	// the interval between two saved picture
-string track_object_type = "t";
-int saved_pic_start = 1;
+string track_object_type = "car";
+int saved_pic_start = 1097;
 // 上面需要改动！！！！！！！！！！！！！！！！！！！！！！！！！！！！
 
 Rect2d box;	// 矩形对象,全局作用
@@ -269,4 +269,5 @@ int main(int argc, char** argv){
 		}
 	}
 	printf("finished tagging this video, and save %d pictures and xmls\n", num_saved_pic-saved_pic_start+1);
+	printf("now the last picture is %d\n", num_saved_pic-1);
 }

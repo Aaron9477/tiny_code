@@ -5,9 +5,9 @@ import utils
 import os
 import random
 
-target_dir = "/media/zq610/2C9BDE0469DC4DFC/ubuntu/dl_dataset/turtlebot/VOC_type/turtlebot_test2/ImageSets/Main"
-num_pix = 445
-val_percent = 0.2
+target_dir = "/media/zq610/2C9BDE0469DC4DFC/ubuntu/dl_dataset/turtlebot/VOC_type/turtlebot/ImageSets/Main"
+num_pix = 1154
+val_percent = 0.1
 
 def build_val_txt():
     trainval_dir = os.path.join(target_dir, "val.txt")
@@ -32,7 +32,7 @@ def build_train_txt(trainval_list, val_list):
     print("finished building train txt!")
 
 def build_trainval_txt():
-    trainval_dir = os.path.join(target_dir, "train_val.txt")
+    trainval_dir = os.path.join(target_dir, "trainval.txt")
     f = open(trainval_dir, 'w')
     for i in range(1, num_pix+1):
         f.write('%06d\n'%(i))

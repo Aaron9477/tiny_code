@@ -197,6 +197,7 @@ def compute_centroids(label_path,n_anchors,loss_convergence,grid_size,iterations
 label_path = "/home/zq610/WYZ/deeplearning/network/darknet/train_test_list/turtlebot/train.txt"
 n_anchors = 6
 loss_convergence = 1e-6
+# grid_size决定网络的大小,grid_size*32=网络输入大小
 grid_size = 10
 iterations_num = 1000
 plus = 0

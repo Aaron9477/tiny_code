@@ -2,31 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a770b5d2-0775-4487-b4f7-eedbe9d636b4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/tiny_code.iml" afterPath="$PROJECT_DIR$/.idea/tiny_code.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/JD_contest/.idea/workspace.xml" afterPath="$PROJECT_DIR$/JD_contest/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/LSTM/.idea/workspace.xml" afterPath="$PROJECT_DIR$/LSTM/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/XY_RL/.idea/workspace.xml" afterPath="$PROJECT_DIR$/XY_RL/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/XY_RL/1.17/.idea/1.17.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/XY_RL/1.17/.idea/encodings.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/XY_RL/1.17/.idea/misc.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/XY_RL/1.17/.idea/modules.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/XY_RL/1.17/.idea/workspace.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/XY_RL/1.17/DQN_modified.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/XY_RL/1.17/RL_brain.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/XY_RL/1.17/logs/events.out.tfevents.1516623387.zq610-DeepLearning" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/XY_RL/1.17/maze_env.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/XY_RL/1.17/run_this.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/XY_RL/1.17/save/2018-1-22-17:4/checkpoint" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/XY_RL/1.17/save/2018-1-22-17:4/model.ckpt.data-00000-of-00001" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/XY_RL/1.17/save/2018-1-22-17:4/model.ckpt.index" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/XY_RL/1.17/save/2018-1-22-17:4/model.ckpt.meta" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/XY_RL/1.17/save/2018-1-25-21:21/checkpoint" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/XY_RL/1.17/save/2018-1-25-21:21/model.ckpt.data-00000-of-00001" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/XY_RL/1.17/save/2018-1-25-21:21/model.ckpt.index" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/XY_RL/1.17/save/2018-1-25-21:21/model.ckpt.meta" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/XY_RL/1.17/save/2018-1-25-21:21/readme.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/XY_RL/1.17/utils.py" afterPath="" />
       <change beforePath="$PROJECT_DIR$/trick/.idea/workspace.xml" afterPath="$PROJECT_DIR$/trick/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -66,8 +41,8 @@
       <file leaf-file-name="interval_choose.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dataset_handle/interval_choose.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+            <state relative-caret-position="468">
+              <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -150,8 +125,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -168,6 +141,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -338,7 +313,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
@@ -346,7 +320,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17088948" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17088948" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23180594" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -644,14 +618,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/XY_RL/1.17/RL_brain.py" />
-    <entry file="file://$PROJECT_DIR$/dataset_handle/interval_choost.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="47" lean-forward="false" selection-start-line="12" selection-start-column="47" selection-end-line="12" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/dataset_handle/interval_choost.py" />
     <entry file="file://$PROJECT_DIR$/dataset_handle/utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -672,8 +639,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dataset_handle/interval_choose.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        <state relative-caret-position="468">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding />
         </state>
       </provider>

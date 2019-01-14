@@ -1,5 +1,7 @@
 #!bin/bash
 
+# 制作数据集运行的文件
+
 # g++ track_and_crop.cpp -o wqe `pkg-config opencv --cflags --libs`
 
 video_dir='/media/zq610/2C9BDE0469DC4DFC/ubuntu/dl_dataset/turtlebot/raw_videos/turtlebot2_1.mp4'

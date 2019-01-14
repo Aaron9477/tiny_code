@@ -2,6 +2,7 @@
 #coding=utf-8
 
 ##---extract frames from videos ---###
+# 该文件已用处不大,现在直接从视频中跟踪得到数据集
 
 import os
 import cv2

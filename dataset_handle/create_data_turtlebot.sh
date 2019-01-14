@@ -1,3 +1,8 @@
+#!/bin/bash
+
+# 该脚本修改自mobilenet-caffe
+# 用于从VOC格式的数据集制作lmdb文件
+
 # cur_dir=$(cd $( dirname ${BASH_SOURCE[0]} ) && pwd )
 # root_dir=$cur_dir/../..
 root_dir=/home/zq610/WYZ/deeplearning/network/ssd-caffe/caffe

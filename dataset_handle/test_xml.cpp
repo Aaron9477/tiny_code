@@ -1,3 +1,9 @@
+
+
+// 定义VOC数据的xml文件的格式
+
+
+
 #include "tinyxml.h"
 #include <iostream>
 #include <string>

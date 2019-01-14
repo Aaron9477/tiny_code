@@ -5,7 +5,7 @@
 
 yolo分支
 3-yolo.使用write_imagesets.py制作list文件
-4-yolo.使用yolo自带的scripts/voc_label_wyz.py文件进行yolo的label制作
+4-yolo.使用yolo自带的darknet/scripts/voc_label_wyz.py文件进行yolo的label制作
 5-yolo.将得到的在darknet目录下的train.ext替换,勿忘!!!!
 6-yolo.之后使用yolo_kmeans.py文件,使用kmeans对bbox进行聚类
 7-yolo.使用聚类结果对cfg文件进行修改

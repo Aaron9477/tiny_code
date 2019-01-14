@@ -1,10 +1,13 @@
 #!/usr/bin/env python
 #coding=utf-8
 
-import os
+# 该程序用于计算VOC类型数据集的不同label的object的数量(一张图中可能有多个object)
 
+import os
+# change the following param
 label_dir = "/media/zq610/2C9BDE0469DC4DFC/ubuntu/dl_dataset/turtlebot/VOC_type/turtlebot/labels"
 num_type = 2
+
 
 total = []
 for i in range(num_type):

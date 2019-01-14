@@ -7,7 +7,7 @@ import random
 
 target_dir = "/media/zq610/2C9BDE0469DC4DFC/ubuntu/dl_dataset/turtlebot/VOC_type/turtlebot/ImageSets/Main"
 num_pix = 1154
-val_percent = 0.1
+val_percent = 0
 
 def build_val_txt():
     trainval_dir = os.path.join(target_dir, "val.txt")

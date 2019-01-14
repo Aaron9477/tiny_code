@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# 该脚本修改自mobilenet-caffe
+# 用于从VOC格式的数据集制作样本的list文件
+
+
 root_dir="$HOME/WYZ/deeplearning/network/ssd-caffe/caffe/data/VOC_type"
 name=turtlebot_test
 sub_dir=ImageSets/Main
